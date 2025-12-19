@@ -1,0 +1,15 @@
+services:
+  gemma-app:
+    build: .
+    image: gemma-gpu-task
+    environment:
+      - HF_TOKEN=${HF_TOKEN}  # This reads from your host environment
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    volumes:
+      - ~/.cache/huggingface:/root/.cache/huggingface
