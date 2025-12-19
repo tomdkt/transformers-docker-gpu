@@ -16,3 +16,12 @@ rebuild:
 	@$(MAKE) clean
 	@$(MAKE) build
 	@$(MAKE) run
+
+
+ENDPOINT = http://localhost:8000/generate
+PROMPT = "Explain the importance of open source models."
+
+test:
+	curl -X POST $(ENDPOINT) \
+		-H "Content-Type: application/json" \
+		-d '{"prompt": $(PROMPT), "max_tokens": 100, "temperature": 0.7}'

@@ -2,6 +2,8 @@ services:
   gemma-app:
     build: .
     image: gemma-gpu-task
+    ports:
+      - "8000:8000"
     environment:
       - HF_TOKEN=${HF_TOKEN}  # This reads from your host environment
     deploy:
